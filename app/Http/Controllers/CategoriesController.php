@@ -14,11 +14,6 @@ class CategoriesController extends Controller
         return response()->json([
             'error' => 'Unauthorized!'
         ], 401);
-        // $caller = User::find(auth()->user()->id);
-        // if($caller == null || $user->visibility == -1)
-        // return response()->json([
-        //     'error' => 'Unauthorized!'
-        // ], 401);
 
         $categories = Category::where('user_id', '=', $user->id)
             ->get();

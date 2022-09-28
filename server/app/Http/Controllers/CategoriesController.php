@@ -8,30 +8,51 @@ use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
-    public function getAllForUser($username) {
-        $user = User::where('name', '=', auth()->user()->name)->first();
-        if($user == null || $user->visibility == -1)
+    public function getUserCategories(User $user)
+    {
+        $userAsker = User::find(auth()->user()->id);
+        if ($user->id == $userAsker->id || $user->visibility) {
+            return response()->json([
+                $user->categories()
+            ]);
+        }
+
+        // No permission response
+    }
+
+    public function create(Request $request)
+    {
+        // validate if name exists 
+
+        $user = User::find(auth()->user()->id);
+        $category = new Category();
+        $category->name = $request->name;
+        $category->user_id = $user->id;
+        $category->save();
+
         return response()->json([
-            'error' => 'Unauthorized!'
-        ], 401);
+            $user->categories()
+        ]);
+    }
 
-        $categories = Category::where('user_id', '=', $user->id)
-            ->get();
+    public function update(Category $category, Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        $category->name = $request->name;
+        $category->save();
 
         return response()->json([
-            'data' => $categories,
-        ], 200);
+            $user->categories()
+        ]);
     }
 
-    public function add(Request $request) {
+    public function delete(Category $category, Request $request)
+    {
+        $user = User::find(auth()->user()->id);
+        $category->delete();
 
-    }
-
-    public function update(Request $request) {
-        
-    }
-
-    public function delete(Request $request) {
-        
+        return response()->json([
+            $user->categories()
+        ]);
     }
 }

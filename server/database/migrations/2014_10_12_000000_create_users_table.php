@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            // $table->integer('visibility'); // -1 = private, 0 = friends_only, 1 = public
+            $table->boolean('visibility');
         });
     }
 

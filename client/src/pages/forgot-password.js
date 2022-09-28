@@ -1,26 +1,26 @@
-import ApplicationLogo from 'components/ApplicationLogo'
-import AuthCard from 'components/AuthCard'
-import AuthSessionStatus from 'components/AuthSessionStatus'
-import AuthValidationErrors from 'components/AuthValidationErrors'
-import Button from 'components/Button'
-import GuestLayout from 'components/Layouts/GuestLayout'
-import Input from 'components/Input'
-import Label from 'components/Label'
-import { useAuth } from 'hooks/auth'
-import { useState } from 'react'
-import {NavLink} from 'react-router-dom';
+import ApplicationLogo from "components/Core/ApplicationLogo";
+import AuthCard from "components/Core/AuthCard";
+import AuthSessionStatus from "components/Core/AuthSessionStatus";
+import AuthValidationErrors from "components/Core/AuthValidationErrors";
+import Button from "components/Core/Button";
+import GuestLayout from "components/Layouts/GuestLayout";
+import Input from "components/Core/Input";
+import Label from "components/Core/Label";
+import { useAuth } from "hooks/auth";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const ForgotPassword = () => {
-  const { forgotPassword } = useAuth({ middleware: 'guest' })
+  const { forgotPassword } = useAuth({ middleware: "guest" });
 
-  const [email, setEmail] = useState('')
-  const [errors, setErrors] = useState([])
-  const [status, setStatus] = useState(null)
+  const [email, setEmail] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [status, setStatus] = useState(null);
 
-  const submitForm = event => {
-    event.preventDefault()
-    forgotPassword({ email, setErrors, setStatus })
-  }
+  const submitForm = (event) => {
+    event.preventDefault();
+    forgotPassword({ email, setErrors, setStatus });
+  };
 
   return (
     <GuestLayout>
@@ -29,11 +29,12 @@ const ForgotPassword = () => {
           <NavLink to="/">
             <ApplicationLogo className="w-20 h-20 fill-current text-gray-500" />
           </NavLink>
-        }>
+        }
+      >
         <div className="mb-4 text-sm text-gray-600">
-          Forgot your password? No problem. Just let us know your
-          email address and we will email you a password reset link
-          that will allow you to choose a new one.
+          Forgot your password? No problem. Just let us know your email address
+          and we will email you a password reset link that will allow you to
+          choose a new one.
         </div>
         {/* Session Status */}
         <AuthSessionStatus className="mb-4" status={status} />
@@ -49,7 +50,7 @@ const ForgotPassword = () => {
               name="email"
               value={email}
               className="block mt-1 w-full"
-              onChange={event => setEmail(event.target.value)}
+              onChange={(event) => setEmail(event.target.value)}
               required
               autoFocus
             />
@@ -60,7 +61,7 @@ const ForgotPassword = () => {
         </form>
       </AuthCard>
     </GuestLayout>
-  )
-}
+  );
+};
 
-export default ForgotPassword
+export default ForgotPassword;

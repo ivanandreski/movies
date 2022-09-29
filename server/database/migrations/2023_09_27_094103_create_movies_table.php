@@ -16,8 +16,16 @@ return new class extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("name");
-            $table->integer("release_year");
+            $table->string("title");
+            $table->integer("year");
+            $table->string('imdbID');
+            $table->string('poster');
+            $table->bigInteger("status_id")
+                ->unsigned()
+                ->nullable();
+            $table->foreign('status_id')
+                ->references('id')
+                ->on('statuses');
             $table->bigInteger("category_id")
                 ->unsigned()
                 ->nullable();

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "lib/axios";
 
-import MovieCard from "components/Index/MovieCard";
+import MovieCard from "components/Movie/MovieCard";
 
 const CategoryData = ({ category }) => {
   const [movies, setMovies] = useState([]);

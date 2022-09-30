@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
+use RarBG;
+use TorrentAPI\TorrentAPI;
 
 class MoviesController extends Controller
 {
@@ -85,11 +87,21 @@ class MoviesController extends Controller
         }
     }
 
+    public function getTorrents(Movie $movie)
+    {
+    }
+
     public function delete(Movie $movie)
     {
     }
 
     public function changeStatus(Movie $movie, Request $request)
     {
+        $movie->status_id = $request->statusId;
+        $movie->save();
+
+        return response()->success("Movie $movie->title status changed successfully!", [
+            'movie' => $movie,
+        ]);
     }
 }

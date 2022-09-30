@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import AppLayout from "components/Layouts/AppLayout";
 import SearchMovies from "./SearchMovies";
-import Movies from "./Movies";
+import Movies from "../Movie/Movies";
 
 const Index = () => {
   const [movies, setMovies] = useState([]);

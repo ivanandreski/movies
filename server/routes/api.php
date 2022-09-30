@@ -35,7 +35,8 @@ Route::middleware(['authenticated'])->group(function () {
     Route::group(['prefix' => 'movies'], function () {
         Route::get("search", [MoviesController::class, 'search']);
         Route::post("create", [MoviesController::class, 'create']);
+        Route::get("/{movie}/torrents", [MoviesController::class, 'getTorrents']);
         Route::delete("/{movie}/delete", [MoviesController::class, 'delete']);
-        Route::delete("/{movie}/change-status", [MoviesController::class, 'changeStatus']);
+        Route::put("/{movie}/change-status", [MoviesController::class, 'changeStatus']);
     });
 });

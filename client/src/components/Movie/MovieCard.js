@@ -1,32 +1,30 @@
-import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
+import React from "react";
 
-import AddMovieToCategory from "./AddMovieToCategory";
-import Torrents from "../Torrents/Torrents";
+import AddMovieToCategory from "../Index/AddMovieToCategory";
+import ChangeStatus from "./ChangeStatus";
 
 const MovieCard = ({ movie, isUsers }) => {
-  const [download, setDownload] = useState(false);
-
-  const handleClose = () => setDownload(false);
-  const handleShow = () => setDownload(true);
-
   const renderButtons = () => {
     if (isUsers) {
       return (
         <>
           <span
-            onClick={handleShow}
+            // onClick={handleShow}
             className="inline-block bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 mb-2"
           >
-            Downloaded
-          </span>
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 mb-2">
-            Watched
+            <a
+              className="text-decoration-none text-black"
+              href={`https://rarbgprx.org/torrents.php?search=${movie.imdbID}&order=seeders&by=DESC`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Download
+            </a>
           </span>
           <span className="inline-block bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 mb-2">
             {movie.status.name}
           </span>
+          <ChangeStatus movie={movie} />
         </>
       );
     }
@@ -63,22 +61,6 @@ const MovieCard = ({ movie, isUsers }) => {
           {renderButtons()}
         </div>
       </div>
-      <Modal show={download} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Download</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Torrents movie={movie} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 };

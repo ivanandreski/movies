@@ -22,9 +22,11 @@ const CategoryData = ({ category }) => {
 
   const renderMovies = () => {
     return movies?.map((movie, key) => (
-      <div key={key} className="col-md-3">
-        <MovieCard movie={movie} isUsers={true} />
-      </div>
+      <React.Fragment key={key}>
+        <div className="col-md-3">
+          <MovieCard movie={movie} isUsers={true} />
+        </div>
+      </React.Fragment>
     ));
   };
 

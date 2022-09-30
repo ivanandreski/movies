@@ -77,6 +77,7 @@ class MoviesController extends Controller
             $movie->poster = $request->poster;
             $movie->imdbID = $request->imdbID;
             $movie->status_id = 1;
+            $movie->user_id = $user->id;
             $movie->save();
 
             return response()->success("Movie $movie->title added to category successfully!", [
@@ -97,11 +98,18 @@ class MoviesController extends Controller
 
     public function changeStatus(Movie $movie, Request $request)
     {
-        $movie->status_id = $request->statusId;
-        $movie->save();
+        $user = User::find(auth()->user()->id);
+        $movies = Movie::where('user_id', $user->id)
+            ->where('title', $movie->title)
+            ->where('year', $movie->year)
+            ->get();
+        foreach ($movies as $movie) {
+            $movie->status_id = $request->statusId;
+            $movie->save();
+        }
 
-        return response()->success("Movie $movie->title status changed successfully!", [
-            'movie' => $movie,
+        return response()->success("Movie $movie->movie status changed successfully!", [
+            'movie' => $user->movies,
         ]);
     }
 }

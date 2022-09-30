@@ -27,6 +27,9 @@ class CategoriesController extends Controller
     {
         try {
             $movies = Movie::where('category_id', $category->id)->get();
+            foreach ($movies as $movie) {
+                $movie->load(['status']);
+            }
             return response()->success("", [
                 'movies' => $movies
             ]);

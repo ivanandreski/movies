@@ -31,7 +31,7 @@ const Profile = () => {
 
   return (
     <AppLayout>
-      <div className="m-5">
+      <div className="mt-5 container">
         <AddCategory setCategories={setCategories} />
         {renderCategories()}
       </div>

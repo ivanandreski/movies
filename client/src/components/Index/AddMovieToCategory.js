@@ -37,10 +37,10 @@ const AddMovieToCategory = ({ movie }) => {
       await axios.post(
         url,
         {
-          title: movie.Title,
-          year: movie.Year,
+          title: movie.Title || movie.title,
+          year: movie.Year || movie.year,
           categoryId: categoryId,
-          poster: movie.Poster,
+          poster: movie.Poster || movie.poster,
           imdbID: movie.imdbID,
         },
         {

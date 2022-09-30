@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "lib/axios";
 
+import MovieCard from "components/Index/MovieCard";
+
 const CategoryData = ({ category }) => {
   const [movies, setMovies] = useState([]);
 
@@ -9,7 +11,8 @@ const CategoryData = ({ category }) => {
       try {
         const url = `/api/categories/${category.id}/movies`;
         const response = await axios.get(url);
-        setMovies(response.data.movies);
+        setMovies(response.data.data.movies);
+        console.log(response.data);
       } catch (error) {
         console.log(error);
       }
@@ -17,13 +20,15 @@ const CategoryData = ({ category }) => {
     fetchMovies();
   }, [category.id]);
 
-  return (
-    <div className="">
-      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry
-      richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes
-      anderson cred nesciunt sapiente ea proident.
-    </div>
-  );
+  const renderMovies = () => {
+    return movies?.map((movie, key) => (
+      <div key={key} className="col-md-3">
+        <MovieCard movie={movie} isUsers={true} />
+      </div>
+    ));
+  };
+
+  return <div className="row">{renderMovies()}</div>;
 };
 
 export default CategoryData;

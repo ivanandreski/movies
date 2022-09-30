@@ -16,7 +16,6 @@ const SearchMovies = ({ setMovies }) => {
       }
       const response = await axios.get(url);
       setMovies(response.data.data.movies);
-      console.log(response.data.data.movies);
     } catch (error) {
       console.log(error);
     }

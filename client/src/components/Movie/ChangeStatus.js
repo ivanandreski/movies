@@ -12,26 +12,44 @@ const ChangeStatus = ({ movie }) => {
   const handleChange = async (e) => {
     const status = e.target.value;
     try {
-      await axios.put(`api/movies/${movie.id}/change-status`, {
-        statusId: status,
-      }, {
-        headers: {
+      await axios.put(
+        `api/movies/${movie.id}/change-status`,
+        {
+          statusId: status,
+        },
+        {
+          headers: {
             "Content-Type": "application/json",
+          },
         }
-      });
+      );
       setDownload(false);
     } catch (error) {
       console.log(error);
     }
   };
 
+  const getColor = () => {
+    let color = "bg-gray-700 text-gray-700";
+    if (movie.status_id === 1) {
+      color = "bg-red-700 text-white";
+    }
+    if (movie.status_id === 2) {
+      color = "bg-blue-700 text-white";
+    }
+    if (movie.status_id === 3) {
+      color = "bg-green-700 text-white";
+    }
+    return color;
+  };
+
   return (
     <>
       <span
         onClick={handleShow}
-        className="inline-block bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 mb-2"
+        className={`inline-block status ${getColor()} bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 mb-2`}
       >
-        Status
+        Status: {movie.status.name}
       </span>
       <Modal show={download} onHide={handleClose}>
         <Modal.Header closeButton>

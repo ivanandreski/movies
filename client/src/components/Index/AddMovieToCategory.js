@@ -59,7 +59,7 @@ const AddMovieToCategory = ({ movie }) => {
     <>
       <span
         onClick={handleShow}
-        className="inline-block bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 mb-2"
+        className="hoverable-pointer inline-block bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 mb-2"
       >
         Add to category
       </span>

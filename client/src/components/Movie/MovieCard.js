@@ -2,16 +2,15 @@ import React from "react";
 
 import AddMovieToCategory from "../Index/AddMovieToCategory";
 import ChangeStatus from "./ChangeStatus";
+import "./style.css";
 
 const MovieCard = ({ movie, isUsers }) => {
   const renderButtons = () => {
     if (isUsers) {
       return (
         <>
-          <span
-            // onClick={handleShow}
-            className="inline-block bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 mb-2"
-          >
+          <ChangeStatus movie={movie} />
+          <span className="inline-block download bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 mb-2">
             <a
               className="text-decoration-none text-black"
               href={`https://rarbgprx.org/torrents.php?search=${movie.imdbID}&order=seeders&by=DESC`}
@@ -21,10 +20,6 @@ const MovieCard = ({ movie, isUsers }) => {
               Download
             </a>
           </span>
-          <span className="inline-block bg-gray-200 rounded-full px-3 py-1 font-semibold text-gray-700 mr-2 mb-2">
-            {movie.status.name}
-          </span>
-          <ChangeStatus movie={movie} />
         </>
       );
     }
@@ -32,9 +27,9 @@ const MovieCard = ({ movie, isUsers }) => {
 
   return (
     <>
-      <div className="max-w-sm rounded overflow-hidden shadow-lg p-3">
+      <div className="card p-3" style={{ height: "48em" }}>
         <img
-          className="w-full"
+          className=""
           src={movie.Poster || movie.poster}
           alt="Sunset in the mountains"
         />
@@ -57,8 +52,8 @@ const MovieCard = ({ movie, isUsers }) => {
               Imdb
             </a>
           </span>
-          <AddMovieToCategory movie={movie} />
           {renderButtons()}
+          <AddMovieToCategory movie={movie} />
         </div>
       </div>
     </>

@@ -9,7 +9,7 @@ const CategoryCollapse = ({ category }) => {
   return (
     <>
       <div
-        className={`card p-4 mb-2`}
+        className={`card p-4 mb-2 hoverable-pointer`}
         onClick={() => setOpen(!open)}
       >
         {category?.name}

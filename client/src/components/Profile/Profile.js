@@ -25,7 +25,7 @@ const Profile = () => {
 
   const renderCategories = () => {
     return categories?.map((category, key) => (
-      <CategoryCollapse key={key} category={category} />
+      <CategoryCollapse key={key} category={category} setCategories={setCategories}/>
     ));
   };
 

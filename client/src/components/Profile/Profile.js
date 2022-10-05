@@ -6,6 +6,7 @@ import AddCategory from "components/Category/AddCategory";
 import AppLayout from "components/Layouts/AppLayout";
 import React from "react";
 import CategoryCollapse from "../Category/CategoryCollapse";
+import ExportUserData from "./ExportUserData";
 
 const Profile = () => {
   const { username } = useParams();
@@ -25,13 +26,18 @@ const Profile = () => {
 
   const renderCategories = () => {
     return categories?.map((category, key) => (
-      <CategoryCollapse key={key} category={category} setCategories={setCategories}/>
+      <CategoryCollapse
+        key={key}
+        category={category}
+        setCategories={setCategories}
+      />
     ));
   };
 
   return (
     <AppLayout>
       <div className="mt-5 container">
+        <ExportUserData />
         <AddCategory setCategories={setCategories} />
         {renderCategories()}
       </div>

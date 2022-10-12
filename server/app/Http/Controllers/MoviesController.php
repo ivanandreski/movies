@@ -90,7 +90,6 @@ class MoviesController extends Controller
 
     public function delete(Movie $movie)
     {
-        
     }
 
     public function changeStatus(Movie $movie, Request $request)

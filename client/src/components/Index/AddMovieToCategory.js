@@ -19,6 +19,7 @@ const AddMovieToCategory = ({ movie }) => {
       try {
         const response = await axios.get(`/api/users/${user?.name}/categories`);
         const categories = response.data.data.categories;
+        if (categories?.length > 0) setCategoryId(categories[0].id);
         setCategoryOptions(
           categories?.map((category) => {
             return { label: category.name, value: category.id };

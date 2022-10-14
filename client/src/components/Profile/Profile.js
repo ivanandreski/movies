@@ -39,7 +39,7 @@ const Profile = () => {
     <AppLayout>
       <UserCategoriesContext.Provider value={categories}>
         <div className="mt-5 container">
-          <ExportUserData />
+          <ExportUserData username={username} />
           <AddCategory setCategories={setCategories} />
           {renderCategories()}
         </div>

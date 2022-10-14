@@ -9,11 +9,19 @@ class Category extends Model
 {
     use HasFactory;
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function movies() {
-        return $this->hasMany(Movies::class);
+    public function movies()
+    {
+        return $this->hasMany(Movie::class);
+    }
+
+    public function movies_export()
+    {
+        return $this->hasMany(Movie::class)
+            ->select(['title', 'year', 'imdbID', 'poster', 'status_id', 'category_id']);
     }
 }

@@ -1,12 +1,24 @@
 import React from "react";
 import axios from "lib/axios";
 
-const ExportUserData = () => {
+const ExportUserData = ({ username }) => {
   const handleExport = async (e) => {
     try {
-        await axios.get(``)
+      const fileType = e.target.value;
+      const response = await axios.get(
+        `/api/users/${username}/export?fileType=${fileType}`,
+        { responseType: "blob" }
+      );
+      console.log(response.data);
+      const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.setAttribute("download", `export.${fileType}`); //any other extension
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
   };
 

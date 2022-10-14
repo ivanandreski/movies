@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MoviesController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::middleware(['authenticated'])->group(function () {
     Route::group(['prefix' => 'users'], function () {
         Route::get("/{user:name}/categories", [CategoriesController::class, 'getUserCategories']);
+        Route::get("/{user:name}/export", [UserController::class, 'export']);
     });
 
     Route::group(['prefix' => 'categories'], function () {

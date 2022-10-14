@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Select from "react-select";
 import axios from "../../lib/axios";
 import { useAuth } from "hooks/auth";
+import { UserCategoriesContext } from "context/UserCategoriesContext";
 
 const AddMovieToCategory = ({ movie }) => {
   const [categoryId, setCategoryId] = useState(null);
-  const [categoryOptions, setCategoryOptions] = useState([]);
+  //   const [categoryOptions, setCategoryOptions] = useState([]);
+  const categories = useContext(UserCategoriesContext);
   const { user } = useAuth({ middleware: "auth" });
 
   const [show, setShow] = useState(false);
@@ -17,14 +19,14 @@ const AddMovieToCategory = ({ movie }) => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        const response = await axios.get(`/api/users/${user?.name}/categories`);
-        const categories = response.data.data.categories;
+        // const response = await axios.get(`/api/users/${user?.name}/categories`);
+        // const categories = response.data.data.categories;
         if (categories?.length > 0) setCategoryId(categories[0].id);
-        setCategoryOptions(
-          categories?.map((category) => {
-            return { label: category.name, value: category.id };
-          })
-        );
+        // setCategoryOptions(
+        //   categories?.map((category) => {
+        //     return { label: category.name, value: category.id };
+        //   })
+        // );
       } catch (error) {
         console.log(error);
       }
@@ -56,6 +58,12 @@ const AddMovieToCategory = ({ movie }) => {
     }
   };
 
+  const getCategoryOptions = () => {
+    return categories?.map((category) => {
+      return { label: category.name, value: category.id };
+    });
+  };
+
   return (
     <>
       <span
@@ -71,7 +79,7 @@ const AddMovieToCategory = ({ movie }) => {
         </Modal.Header>
         <Modal.Body>
           <Select
-            options={categoryOptions}
+            options={getCategoryOptions()}
             onChange={(e) => setCategoryId(e.value)}
           />
         </Modal.Body>

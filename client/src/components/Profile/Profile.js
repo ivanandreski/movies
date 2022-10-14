@@ -7,6 +7,7 @@ import AppLayout from "components/Layouts/AppLayout";
 import React from "react";
 import CategoryCollapse from "../Category/CategoryCollapse";
 import ExportUserData from "./ExportUserData";
+import { UserCategoriesContext } from "context/UserCategoriesContext";
 
 const Profile = () => {
   const { username } = useParams();
@@ -36,11 +37,13 @@ const Profile = () => {
 
   return (
     <AppLayout>
-      <div className="mt-5 container">
-        <ExportUserData />
-        <AddCategory setCategories={setCategories} />
-        {renderCategories()}
-      </div>
+      <UserCategoriesContext.Provider value={categories}>
+        <div className="mt-5 container">
+          <ExportUserData />
+          <AddCategory setCategories={setCategories} />
+          {renderCategories()}
+        </div>
+      </UserCategoriesContext.Provider>
     </AppLayout>
   );
 };

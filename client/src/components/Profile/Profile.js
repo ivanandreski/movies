@@ -7,6 +7,7 @@ import AppLayout from "components/Layouts/AppLayout";
 import React from "react";
 import CategoryCollapse from "../Category/CategoryCollapse";
 import ExportUserData from "./ExportUserData";
+import ImportUserData from "./ImportUserData";
 import { UserCategoriesContext } from "context/UserCategoriesContext";
 
 const Profile = () => {
@@ -40,6 +41,7 @@ const Profile = () => {
       <UserCategoriesContext.Provider value={categories}>
         <div className="mt-5 container">
           <ExportUserData username={username} />
+          <ImportUserData username={username} />
           <AddCategory setCategories={setCategories} />
           {renderCategories()}
         </div>

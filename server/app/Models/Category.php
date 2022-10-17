@@ -24,4 +24,12 @@ class Category extends Model
         return $this->hasMany(Movie::class)
             ->select(['title', 'year', 'imdbID', 'poster', 'status_id', 'category_id']);
     }
+
+    public static function findByNameAndUser($name, $user)
+    {
+        return Category::where('name', $name)
+            ->where('user_id', $user->id)
+            ->where('user_id', $user->id)
+            ->first();
+    }
 }

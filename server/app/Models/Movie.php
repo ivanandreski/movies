@@ -23,4 +23,12 @@ class Movie extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public static function findByImdbIDAndUserAndCategory($imdbID, $user, $category)
+    {
+        return Movie::where('imdbID', $imdbID)
+            ->where('user_id', $user->id)
+            ->where('category_id', $category->id)
+            ->first();
+    }
 }

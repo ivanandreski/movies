@@ -23,6 +23,7 @@ class UserDataImportService
     {
         $counter = 0;
         $skipDuplicate = 0;
+        $skipped = [];
 
         $path = $file->getRealPath();
 
@@ -54,12 +55,14 @@ class UserDataImportService
                 $counter++;
             } else {
                 $skipDuplicate++;
+                $skipped[] = "$record[0] - $record[1]";
             }
         }
 
         return [
             'success' => "$counter movies added successfully",
             'duplicate' => "$skipDuplicate movies skipped",
+            'skipped' => $skipped,
         ];
     }
 
@@ -97,6 +100,9 @@ class UserDataImportService
                     $counter++;
                 } else {
                     $skipDuplicate++;
+                    $title = $value['title'];
+                    $year = $value['year'];
+                    $skipped[] = "$title - $year";
                 }
             }
         }
@@ -104,6 +110,7 @@ class UserDataImportService
         return [
             'success' => "$counter movies added successfully",
             'duplicate' => "$skipDuplicate movies skipped",
+            'skipped' => $skipped,
         ];
     }
 }

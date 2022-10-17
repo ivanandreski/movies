@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import axios from "../../lib/axios";
@@ -6,13 +6,18 @@ import axios from "../../lib/axios";
 const url = `/api/categories/create`;
 
 const AddCategory = ({ setCategories }) => {
-  const [name, setName] = useState("");
+  const nameRef = useRef();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const name = nameRef.current.value;
     try {
       const response = await axios.post(url, { name });
-      setCategories((categories) => [...categories, response.data]);
+      setCategories((categories) => [
+        ...categories,
+        response.data.data.category,
+      ]);
+      nameRef.current.value = "";
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +30,7 @@ const AddCategory = ({ setCategories }) => {
           <div className="col-md-9">
             <input
               type="text"
-              onChange={(e) => setName(e.target.value)}
+              ref={nameRef}
               placeholder="Category name"
               className="form-control w-100"
             />

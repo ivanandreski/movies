@@ -34,20 +34,7 @@ class MoviesController extends Controller
 
         $response =  Http::get($url);
         return response()->success("", [
-            'movies' => $response['Search']
-        ]);
-
-        $movies = [];
-        for ($i = 1; $i < 4; $i++) {
-            $url .= "&page=$i";
-            $response = Http::get($url);
-            if ($response->json()['Search'] != null) {
-                $movies = array_merge($movies, $response->Search);
-            }
-        }
-
-        return response()->success("", [
-            'movies' => $movies
+            'movies' => $response['Search'] ?? []
         ]);
     }
 
@@ -90,6 +77,15 @@ class MoviesController extends Controller
 
     public function delete(Movie $movie)
     {
+        $user = User::find(auth()->user()->id);
+        if ($movie->user_id == $user->id) {
+            $movie->delete();
+            return response()->success("Movie $movie->title deleted successfully!", [
+                'movie' => $movie,
+            ]);
+        }
+
+        return response()->error("You don't have permission to delete this movie!", 403);
     }
 
     public function changeStatus(Movie $movie, Request $request)

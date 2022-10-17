@@ -1,0 +1,3 @@
+- When adding a movie from one category to another, it doesnt appear untill a refresh
+- make service layer
+- add privacy for users

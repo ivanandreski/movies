@@ -1,6 +1,0 @@
-1. When creating new category, title doesnt appear without refresh
-2. When creating category, name box doesnt get cleared
-3. When searching a  movie, there is a chance omdb returns nothing, handle that
-4. Modal for adding new movie to category, title says Modal Heading, change it
-5. Add remove from category movie
-6. When adding a movie from one category to another, it doesnt appear untill a refresh

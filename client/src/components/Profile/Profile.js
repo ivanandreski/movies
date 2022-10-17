@@ -24,7 +24,7 @@ const Profile = () => {
       }
     };
     fetchCategories();
-  }, [username]);
+  }, []);
 
   const renderCategories = () => {
     return categories?.map((category, key) => (

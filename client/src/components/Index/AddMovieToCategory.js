@@ -8,9 +8,7 @@ import { UserCategoriesContext } from "context/UserCategoriesContext";
 
 const AddMovieToCategory = ({ movie }) => {
   const [categoryId, setCategoryId] = useState(null);
-  //   const [categoryOptions, setCategoryOptions] = useState([]);
   const categories = useContext(UserCategoriesContext);
-  const { user } = useAuth({ middleware: "auth" });
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -19,14 +17,7 @@ const AddMovieToCategory = ({ movie }) => {
   useEffect(() => {
     const getCategories = async () => {
       try {
-        // const response = await axios.get(`/api/users/${user?.name}/categories`);
-        // const categories = response.data.data.categories;
         if (categories?.length > 0) setCategoryId(categories[0].id);
-        // setCategoryOptions(
-        //   categories?.map((category) => {
-        //     return { label: category.name, value: category.id };
-        //   })
-        // );
       } catch (error) {
         console.log(error);
       }
@@ -75,7 +66,7 @@ const AddMovieToCategory = ({ movie }) => {
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Add movie to category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Select

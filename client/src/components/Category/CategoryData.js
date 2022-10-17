@@ -23,7 +23,7 @@ const CategoryData = ({ category }) => {
   const renderMovies = () => {
     return movies?.map((movie, key) => (
       <React.Fragment key={key}>
-        <div className="col-md-3">
+        <div className="col-md-2">
           <MovieCard movie={movie} isUsers={true} />
         </div>
       </React.Fragment>

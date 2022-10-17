@@ -15,6 +15,7 @@ const SearchMovies = ({ setMovies }) => {
         url += `&year=${year}`;
       }
       const response = await axios.get(url);
+      console.log(response.data);
       setMovies(response.data.data.movies);
     } catch (error) {
       console.log(error);

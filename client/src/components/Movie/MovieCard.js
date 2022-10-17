@@ -1,3 +1,4 @@
+import axios from "lib/axios";
 import React from "react";
 
 import AddMovieToCategory from "../Index/AddMovieToCategory";
@@ -25,14 +26,26 @@ const MovieCard = ({ movie, isUsers }) => {
     }
   };
 
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(`/api/movies/${movie.id}/delete`);
+      console.log(response.data.data.movie);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
-      <div className="card p-3" style={{ height: "48em" }}>
+      <div className="card p-3 mt-2" style={{ height: "48em" }}>
         <img
           className=""
           src={movie.Poster || movie.poster}
           alt="Sunset in the mountains"
         />
+        <button className="btn btn-danger" onClick={handleDelete}>
+          X
+        </button>
         <div className="px-6 py-4">
           <div className="font-bold text-xl mb-2">
             {movie.title || movie.Title}

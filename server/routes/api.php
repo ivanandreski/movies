@@ -24,6 +24,7 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 Route::middleware(['authenticated'])->group(function () {
     Route::group(['prefix' => 'users'], function () {
         Route::get("/{user:name}/categories", [CategoriesController::class, 'getUserCategories']);
+        Route::get("/categories", [CategoriesController::class, 'getUserCategories']);
         Route::get("/{user:name}/export", [UserController::class, 'export']);
         Route::post("/{user:name}/import", [UserController::class, 'import']);
     });

@@ -13,6 +13,8 @@ class CategoriesController extends Controller
 {
     public function getUserCategories(User $user)
     {
+        $user = User::find(auth()->user()->id);
+
         try {
             $categories = Category::where('user_id', $user->id)->get();
             return response()->success("", [
@@ -22,6 +24,18 @@ class CategoriesController extends Controller
             return response()->error($th->getMessage(), 500);
         }
     }
+
+    // public function getUserCategoriesAdd()
+    // {
+    //     try {
+    //         $categories = Category::where('user_id', $user->id)->get();
+    //         return response()->success("", [
+    //             'categories' => $categories
+    //         ]);
+    //     } catch (\Throwable $th) {
+    //         return response()->error($th->getMessage(), 500);
+    //     }
+    // }
 
     public function getMoviesForCategory(Category $category)
     {

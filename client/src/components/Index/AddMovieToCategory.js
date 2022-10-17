@@ -3,8 +3,7 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Select from "react-select";
 import axios from "../../lib/axios";
-import { useAuth } from "hooks/auth";
-import { UserCategoriesContext } from "context/UserCategoriesContext";
+import { UserCategoriesContext } from "../../context/UserCategoriesContext";
 
 const AddMovieToCategory = ({ movie }) => {
   const [categoryId, setCategoryId] = useState(null);

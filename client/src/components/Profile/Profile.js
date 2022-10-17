@@ -8,7 +8,7 @@ import React from "react";
 import CategoryCollapse from "../Category/CategoryCollapse";
 import ExportUserData from "./ExportUserData";
 import ImportUserData from "./ImportUserData";
-import { UserCategoriesContext } from "context/UserCategoriesContext";
+import { UserCategoriesContext } from "../../context/UserCategoriesContext";
 
 const Profile = () => {
   const { username } = useParams();

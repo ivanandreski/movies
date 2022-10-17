@@ -4,7 +4,7 @@ import axios from "lib/axios";
 import AppLayout from "components/Layouts/AppLayout";
 import SearchMovies from "./SearchMovies";
 import Movies from "../Movie/Movies";
-import { UserCategoriesContext } from "context/UserCategoriesContext";
+import { UserCategoriesContext } from "../../context/UserCategoriesContext";
 
 const Index = () => {
   const [movies, setMovies] = useState([]);

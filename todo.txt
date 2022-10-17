@@ -1,3 +1,5 @@
 - When adding a movie from one category to another, it doesnt appear untill a refresh
+- make separate profile page with options to change username email pass and import data
+- make posters the same size
 - make service layer
 - add privacy for users

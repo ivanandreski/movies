@@ -10,7 +10,7 @@ import "bootstrap/dist/js/bootstrap.js";
 
 ReactDOM.render(
   <React.StrictMode>
-    <HashRouter>
+    <HashRouter basename={process.env.REACT_APP_BASE_URL}>
       <App />
     </HashRouter>
   </React.StrictMode>,

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->boolean('visibility')->default(true);
+            $table->boolean('visibility')->default(false);
         });
     }
 
